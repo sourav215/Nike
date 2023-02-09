@@ -1,5 +1,5 @@
 const express = require("express")
-const ProductModel = require("../model/ProductModel")
+const ProductModel = require("../models/ProductModel")
 
 
 const singleProductController = express.Router()

@@ -5,6 +5,10 @@ const cors = require('cors');
 
 const connectDatabase = require('./config/db');
 const authController = require('./controllers/authController');
+const clothDataController = require('./controllers/clothDataController')
+const ShoeController = require("./controllers/shoeController");
+const productController = require("./controllers/productController");
+const cartController = require("./controllers/cartController");
 
 const app = express();
 
@@ -18,6 +22,14 @@ app.get("/", (req, res) => {
 })
 app.use('/users', authController)
 const PORT = 8080;
+app.use("/clothData",clothDataController)
+app.use("/shoeData",ShoeController)
+ 
+app.use("/products", productController);
+ 
+ 
+app.use("/cart",cartController)
+
 
 app.listen(PORT, () => {
     try {

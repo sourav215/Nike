@@ -1,6 +1,6 @@
 const express = require("express");
-const CartModel = require("../model/CartModel");
-const ProductModel = require("../model/ProductModel");
+const CartModel = require("../models/CartModel");
+const ProductModel = require("../models/ProductModel");
 
 const cartController = express.Router();
 

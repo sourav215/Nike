@@ -1,6 +1,6 @@
 const express = require("express")
-const ClothModel = require("../model/clothDataModel")
-const ProductModel = require("../model/ProductModel")
+const ClothModel = require("../models/clothDataModel")
+const ProductModel = require("../models/ProductModel")
  
  
 
