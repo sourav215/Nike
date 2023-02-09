@@ -10,9 +10,8 @@ const authentication = (req, res, next) => {
         if(err){
             return res.send("Please login again")
         }
-        // console.log(decoded)
         req.body.email = decoded.email
-        req.body.userId = decoded.userId
+        req.body.userId = decoded._id
         next()
     });
 }

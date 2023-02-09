@@ -1,18 +1,21 @@
 const express = require("express");
 const CartModel = require("../models/CartModel");
 const ProductModel = require("../models/ProductModel");
+const authentication = require('../middlewares/authentication')
 
 const cartController = express.Router();
 
-cartController.get("/", async(req, res) => {
- const cart = await CartModel.find()
+cartController.get("/",authentication, async(req, res) => {
+  
+ const cart = await CartModel.find({user: req.body.userId})
  res.send(cart)
 });
 
-cartController.post("/", async(req, res) => {
-  const { id } = req.body;
+cartController.post("/",authentication, async(req, res) => {
+  const { id, userId } = req.body;
  
-  const cart = await CartModel.findOne({productId:id})
+  const cart = await CartModel.findOne({user: userId,productId:id})
+  console.log(cart);
   
  
   if(cart){
@@ -39,7 +42,7 @@ else {
     size,
     color,
     rating,
-    img,
+    img
    } = products;
    
    const CartProduct = new CartModel({
@@ -56,6 +59,7 @@ else {
     rating,
     img,
   });
+  console.log("userId sou: ", userId);
  
   CartProduct.save();
   res.send(CartProduct);
@@ -64,7 +68,7 @@ else {
 
  
 
-cartController.post("/count", async(req, res) => {
+cartController.post("/count",authentication, async(req, res) => {
   const { id,type } = req.body;
   const cart = await CartModel.findOne({_id:id})
    if(type==="inc"){
@@ -82,7 +86,7 @@ cartController.post("/count", async(req, res) => {
 })
 
 
-cartController.delete("/delete/:id",async(req,res)=>{
+cartController.delete("/delete/:id",authentication, async(req,res)=>{
   const { id } = req.params;
  
    await CartModel.deleteOne({_id:id})

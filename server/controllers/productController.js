@@ -1,6 +1,6 @@
 const express = require("express")
 const ProductModel = require("../models/ProductModel")
-
+const authentication = require('../middlewares/authentication')
 
 const productController = express.Router()
 
