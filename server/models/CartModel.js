@@ -18,7 +18,7 @@ const cartSchema = new mongoose.Schema(
     color: reqString,
     rating: reqNumber,
     img: reqArray,
-    // user: reqString,
+    userId: reqString,
   },
   {
     versionKey: false,

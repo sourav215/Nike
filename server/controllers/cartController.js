@@ -7,20 +7,20 @@ const cartController = express.Router();
 
 cartController.get("/",authentication, async(req, res) => {
   
- const cart = await CartModel.find({user: req.body.userId})
+ const cart = await CartModel.find({userId: req.body.userId})
  res.send(cart)
 });
 
 cartController.post("/",authentication, async(req, res) => {
   const { id, userId } = req.body;
  
-  const cart = await CartModel.findOne({user: userId,productId:id})
-  console.log(cart);
+  const cart = await CartModel.findOne({ userId,productId:id})
+  // console.log(cart);
   
  
   if(cart){
-    const incCart = await CartModel.findOneAndUpdate({_id:cart._id},  { count: Number(cart.count)+1 })
-  const update =  await CartModel.findOneAndUpdate({_id:cart._id},  { price: Number(cart.price)+Number(cart.oldprice) })
+    const incCart = await CartModel.findOneAndUpdate({_id:cart._id, userId},  { count: Number(cart.count)+1 })
+  const update =  await CartModel.findOneAndUpdate({_id:cart._id, userId},  { price: Number(cart.price)+Number(cart.oldprice) })
    
   res.send(update)
 
@@ -28,7 +28,7 @@ cartController.post("/",authentication, async(req, res) => {
   }
 else {
  
- 
+ console.log("userId", userId);
    const products = await ProductModel.findOne({ _id: id });
    
    const {
@@ -58,6 +58,7 @@ else {
     color,
     rating,
     img,
+    userId
   });
   console.log("userId sou: ", userId);
  
@@ -69,17 +70,17 @@ else {
  
 
 cartController.post("/count",authentication, async(req, res) => {
-  const { id,type } = req.body;
-  const cart = await CartModel.findOne({_id:id})
+  const { id,type, userId } = req.body;
+  const cart = await CartModel.findOne({_id:id, userId})
    if(type==="inc"){
- const incCart = await CartModel.findOneAndUpdate({_id:id},  { count: Number(cart.count)+1 })
-   await CartModel.findOneAndUpdate({_id:id},  { price: Number(cart.price)+Number(cart.oldprice) })
-    const updatedCart = await CartModel.find()
+ const incCart = await CartModel.findOneAndUpdate({_id:id, userId},  { count: Number(cart.count)+1 })
+   await CartModel.findOneAndUpdate({_id:id, userId},  { price: Number(cart.price)+Number(cart.oldprice) })
+    const updatedCart = await CartModel.find({userId})
     return   res.send(updatedCart);
    } else if(type==="dec"){
-    const decCart = await CartModel.findOneAndUpdate({_id:id},  { count: Number(cart.count)-1 })
-    await CartModel.findOneAndUpdate({_id:id},  { price: Number(cart.price)-Number(cart.oldprice) })
-    const updatedCart = await CartModel.find()
+    const decCart = await CartModel.findOneAndUpdate({_id:id,userId},  { count: Number(cart.count)-1 })
+    await CartModel.findOneAndUpdate({_id:id, userId},  { price: Number(cart.price)-Number(cart.oldprice) })
+    const updatedCart = await CartModel.find({userId})
     return   res.send(updatedCart);
    }
  
@@ -88,9 +89,9 @@ cartController.post("/count",authentication, async(req, res) => {
 
 cartController.delete("/delete/:id",authentication, async(req,res)=>{
   const { id } = req.params;
- 
-   await CartModel.deleteOne({_id:id})
-  const updatedCart = await CartModel.find()
+ const userId = req.body.userId;
+   await CartModel.deleteOne({_id:id,userId})
+  const updatedCart = await CartModel.find({userId})
   return   res.send(updatedCart);
 })
 module.exports = cartController;
