@@ -5,7 +5,10 @@ const Order = require('../models/order.model');
 
 router.post('/', authorization, async (req, res) => {
     try {
-        const order = await Order.create({ ...req.body, user: req.user._id });
+        const {} = req.body;
+        console.log("order controller")
+        console.log(req.body);
+        const order = await Order.create({ ...req.body, userId: req.body.userId });
 
         return res.status(201).json(order);
 

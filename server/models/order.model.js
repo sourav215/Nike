@@ -45,7 +45,7 @@ const OrderSchema = new Schema({
         email: reqString,
         mobile: reqNumber
     },
-    user: {
+    userId: {
         type: Schema.Types.ObjectId,
         ref: 'user',
       
