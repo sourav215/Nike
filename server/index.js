@@ -10,6 +10,7 @@ const ShoeController = require("./controllers/shoeController");
 const productController = require("./controllers/productController");
 const cartController = require("./controllers/cartController");
 const paymentController = require("./controllers/payment.controller")
+const orderController = require("./controllers/order.controller");
 
 
 const app = express();
@@ -30,8 +31,10 @@ app.use("/shoeData",ShoeController)
 app.use("/products", productController);
  
  
-app.use("/cart",cartController)
+app.use("/cart",cartController);
+app.use("/order", orderController);
 app.use("/payment", paymentController);
+
 
 
 

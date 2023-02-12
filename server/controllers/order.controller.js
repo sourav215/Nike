@@ -1,11 +1,12 @@
 const router = require('express').Router();
-const authorization = require('../middlewares/authorization');
+const authentication = require('../middlewares/authentication');
 const CartModel = require("../models/CartModel");
 const Order = require('../models/order.model');
 
 
-router.post('/', authorization, async (req, res) => {
+router.post('/',authentication,  async (req, res) => {
     try {
+
         const {} = req.body;
         console.log("order controller")
         console.log(req.body);
@@ -19,11 +20,10 @@ router.post('/', authorization, async (req, res) => {
 });
 
 
-router.get('/', authorization, async (req, res) => {
+router.get('/',authentication, async (req, res) => {
     try {
-        const order = await Order.find({ user: req.user._id }).lean().exec();
-
-        return res.status(201).json(order);
+        const orders = await Order.find({userId: req.body.userId});
+        res.send(cart);
 
     } catch (error) {
         return res.status(500).json({ message: 'Internal server error!' });
