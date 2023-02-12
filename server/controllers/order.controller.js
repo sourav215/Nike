@@ -7,6 +7,10 @@ const Order = require("../models/order.model");
 router.post("/", authentication, async (req, res) => {
   try {
     const cart = await CartModel.find({ userId: req.body.userId });
+    if(!cart){
+       return res.send("There are no products");
+    }
+    const paymentId = crypto.randomUUID();
     cart.map((ele) => {
       const {
         _id,
@@ -39,17 +43,19 @@ router.post("/", authentication, async (req, res) => {
         rating,
         img,
         userId,
-        orderId: crypto.randomUUID(),
+        orderId: paymentId,
       });
       NewOrder.save();
     });
-    
+
     await CartModel.deleteMany({ userId: req.body.userId });
 
     const latestOrder = await Order.find({ userId: req.body.userId });
 
-    res.send(latestOrder);
-
+    res.send({
+      orderId: paymentId,
+      data: latestOrder,
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Internal server error!" });
