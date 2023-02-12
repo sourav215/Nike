@@ -16,6 +16,8 @@ paymentRouter.get("/get-razorpay-key", (req, res) => {
 
 paymentRouter.post("/create-order", async (req, res) => {
   console.log("create payment");
+  console.log(process.env.RAZORPAY_KEY_ID);
+  console.log(process.env.RAZORPAY_SECRET);
   try {
     const instance = new Razorpay({
       key_id: process.env.RAZORPAY_KEY_ID,
@@ -29,6 +31,7 @@ paymentRouter.post("/create-order", async (req, res) => {
     if (!order) return res.status(500).send("Some error occured");
     res.send(order);
   } catch (error) {
+    console.log("error in create order")
     res.status(500).send(error);
   }
 });

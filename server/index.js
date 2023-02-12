@@ -9,6 +9,8 @@ const clothDataController = require('./controllers/clothDataController')
 const ShoeController = require("./controllers/shoeController");
 const productController = require("./controllers/productController");
 const cartController = require("./controllers/cartController");
+const paymentController = require("./controllers/payment.controller")
+
 
 const app = express();
 
@@ -29,6 +31,8 @@ app.use("/products", productController);
  
  
 app.use("/cart",cartController)
+app.use("/payment", paymentController);
+
 
 
 app.listen(PORT, () => {
