@@ -1,17 +1,57 @@
 const router = require("express").Router();
+const crypto = require("crypto");
 const authentication = require("../middlewares/authentication");
 const CartModel = require("../models/CartModel");
 const Order = require("../models/order.model");
 
 router.post("/", authentication, async (req, res) => {
   try {
-    const {} = req.body;
-    console.log("order controller");
-    console.log(req.body);
-    const order = await Order.create({ ...req.body, userId: req.body.userId });
+    const cart = await CartModel.find({ userId: req.body.userId });
+    cart.map((ele) => {
+      const {
+        _id,
+        productId,
+        title,
+        gender,
+        description,
+        category,
+        price,
+        oldprice,
+        count,
+        size,
+        color,
+        rating,
+        img,
+        userId,
+      } = ele;
 
-    return res.status(201).json(order);
+      const NewOrder = new Order({
+        productId,
+        title,
+        gender,
+        description,
+        category,
+        price,
+        oldprice,
+        count,
+        size,
+        color,
+        rating,
+        img,
+        userId,
+        orderId: crypto.randomUUID(),
+      });
+      NewOrder.save();
+    });
+    
+    await CartModel.deleteMany({ userId: req.body.userId });
+
+    const latestOrder = await Order.find({ userId: req.body.userId });
+
+    res.send(latestOrder);
+
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: "Internal server error!" });
   }
 });
@@ -20,7 +60,6 @@ router.get("/", authentication, async (req, res) => {
   try {
     const allorders = await Order.find({ userId: req.body.userId });
     res.send(allorders);
-    
   } catch (error) {
     return res.status(500).json({ message: "Internal server error!" });
   }
