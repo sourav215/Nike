@@ -32,7 +32,7 @@ app.use("/products", productController);
  
  
 app.use("/cart",cartController);
-app.use("/order", orderController);
+app.use("/orders", orderController);
 app.use("/payment", paymentController);
 
 
