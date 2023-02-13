@@ -28,7 +28,7 @@ cartController.post("/",authentication, async(req, res) => {
   }
 else {
  
- console.log("userId", userId);
+//  console.log("userId", userId);
    const products = await ProductModel.findOne({ _id: id });
    
    const {
@@ -60,7 +60,7 @@ else {
     img,
     userId
   });
-  console.log("userId sou: ", userId);
+  // console.log("userId sou: ", userId);
  
   CartProduct.save();
   res.send(CartProduct);

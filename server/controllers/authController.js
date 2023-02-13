@@ -55,7 +55,7 @@ authController.post("/signup", async (req, res) => {
     //   res.send("user successfully created");
     // });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return res
       .status(500)
       .json({ status: "Failed", message: "Something went wrong" });

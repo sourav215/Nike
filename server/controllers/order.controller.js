@@ -57,7 +57,7 @@ router.post("/", authentication, async (req, res) => {
       data: latestOrder,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(500).json({ message: "Internal server error!" });
   }
 });
