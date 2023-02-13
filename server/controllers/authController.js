@@ -15,7 +15,7 @@ const generateToken = (user) => {
 authController.post("/signup", async (req, res) => {
   try {
     let { firstName, lastName, email, password, gender } = req.body;
-
+    
     if (!firstName || !email || !password || !gender) {
       return res
         .status(500)
