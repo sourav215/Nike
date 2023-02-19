@@ -5,14 +5,15 @@
 <br />
 
 <h2 align="center">🖥️ Technology Stack Used</h2>
+<br/>
 
-#### <strong>Frontend :</strong> React, Redux, ChakraUI
+<b>Frontend :</b> React, Redux, ChakraUI
 
-#### <b>Backend :</b> Node, Express, JWT
+<b>Backend :</b> Node, Express, JWT
 
-#### <b>Database :</b> MongoDB
+<b>Database :</b> MongoDB
 
-#### <b>Deployed On :</b> Vercel, Cyclic
+<b>Deployed On :</b> Vercel, Cyclic
 
 <br/>
 
