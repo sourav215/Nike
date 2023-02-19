@@ -5,9 +5,8 @@
 <br />
 
 <h2 align="center">🖥️ Technology Stack Used</h2>
-<br/>
 
-#### <b>Frontend :</b> React, Redux, ChakraUI
+#### <strong>Frontend :</strong> React, Redux, ChakraUI
 
 #### <b>Backend :</b> Node, Express, JWT
 
@@ -38,7 +37,7 @@
 - Can see Ordered Items
 - Fully Responsive
 
-## Glimpses of Nike-Clone 🙈 :
+## Glimpses of Nike :
 
 <table>
   <tr>
