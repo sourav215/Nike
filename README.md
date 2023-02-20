@@ -1,10 +1,10 @@
-<h1 align="center">Nike</h1>
+<h1>Nike</h1>
 
-<h3 align="center">It's a MERN Stack E-commerce web application with all the major functionalities</h3>
+Nike Clone is MERN Stack e-commerce web application that allows you to buy shoes & clothes online. It has a variety of categories, just visit the product listing page and you will see all the products, apply filters as per your need and in just a few clicks you can buy any products from the website.
 
 <br />
 
-<h2 align="center">🖥️ Technology Stack Used</h2>
+<h2 >Technology Stack Used</h2>
 <br/>
 
 <b>Frontend :</b> React, Redux, ChakraUI
@@ -17,15 +17,16 @@
 
 <br/>
 
-## <b>Screens</b>
+## Screens ( All screens are responsive)
 
 - Homepage Page
 - Login / Signup Page
-- Product Listing Page
+- Product Listing Page with Sort and Filters
 - Men, Women and Kids Section
 - Product Description Page
 - Cart Page
 - Checkout and Payment Page
+- Order Summary Page
 
 ## 🚀 Features
 
@@ -33,10 +34,11 @@
 - Handle Multiple Users
 - JWT (Json Web Token) Authentication and BcryptJS Password Hashing
 - Authorization
+- Product Filters Based on Category and Color
+- Product Sorting Based on Price
 - Cart Add and Remove Items
 - Cart Update Quantities
-- Can see Ordered Items
-- Fully Responsive
+- Can see Ordered Items along with order Id.
 
 ## Glimpses of Nike :
 
